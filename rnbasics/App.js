@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 });
 
 // Criação do componente Content
-const Content = styled.Text`
+const Content = styled.SafeAreaView`
   flex:1
   background-color:black;
 `;
