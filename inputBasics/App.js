@@ -25,12 +25,28 @@ const Input = styled.TextInput`
   margin-top:100px;
 `;
 
+const Box = styled.View`
+  width:200px;
+  height:200px;
+  border:2px dashed #ccc;
+  border-radius:6px;
+  background-color:#000000;
+  margin-top:10px;
+  align-items:center;
+  justify-content:center;
+`;
+
+const Texto = styled.Text`
+  color:#ffd900;
+  font-size:20px;
+`;
+
 const State = () => {
   const [nome, setNome] = useState('Jack');
-  const [resultado, setResultado] = useState('');
+  const [resultado, setResultado] = useState(false);
 
   const handleClick = () => {
-    setResultado(nome);
+    setResultado(resultado ? false : true);
   }
 
   return (
@@ -38,10 +54,13 @@ const State = () => {
       <Label name="Passando texto como propriedade" />
       <Input value={nome} onChangeText={setNome}></Input>
 
-      <Button title="Gerar Nome" onPress={handleClick} />
+      <Button title={resultado ? 'Ocultar nome' : 'Exibir nome'} onPress={handleClick} />
 
-      <Text style={{ color: '#fff', fontWeight: 'bold' }}>{resultado}</Text>
-
+      {resultado && (
+        <Box>
+          <Texto>{nome}</Texto>
+        </Box>
+      )}
 
     </Page>
   );
