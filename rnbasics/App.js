@@ -28,7 +28,7 @@ function TextoComponent2() {
 class TextoComponent3 extends Component {
   render() {
     return (
-      <Text> COMPONENT TEXTO WORKS!!!</Text >
+      <Text>COMPONENT TEXTO WORKS!!!</Text >
     );
   }
 }
@@ -36,7 +36,9 @@ class TextoComponent3 extends Component {
 const ComponenteComEstilos = () => {
   return (
     <View style={styles.page}>
-      <Text style={styles.text}>Estilização de componente com StyleSheet (class)</Text>
+      <Text style={styles.text}>
+        Estilização de componente com StyleSheet (class)
+      </Text>
       <Text style={{ color: '#fff896', fontSize: 30, textAlign: 'center' }}>Estilo inline</Text>
       <Text style={[styles.text, styles.erro]}>Erro!!!</Text>
     </View>
