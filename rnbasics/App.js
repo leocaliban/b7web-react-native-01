@@ -6,6 +6,8 @@ import {
   SafeAreaView
 } from 'react-native';
 
+import styled from 'styled-components/native';
+
 // Criação de componente usando constante
 const TextoComponent1 = () => {
   return (
@@ -70,4 +72,31 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ComponenteComEstilos;
+// Criação do componente Content
+const Content = styled.Text`
+  flex:1
+  background-color:black;
+`;
+
+// Criação do componente Label com StyledComponent
+const Label = styled.Text`
+  color:#ff0000;
+  font-size:30px;
+`;
+
+const Nome = styled.Text`
+  color:${props => props.cor};
+  font-size:30px;
+`;
+
+const ComponenteStyled = () => {
+  return (
+    <Content>
+      <Label>Estilização de componente com StyledComponent</Label>
+      <Nome cor="white">Passando Propriedade personalizada</Nome>
+      <Nome cor="blue">Erro!!!</Nome>
+    </Content>
+  );
+};
+
+export default ComponenteStyled;
