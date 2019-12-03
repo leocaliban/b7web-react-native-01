@@ -5,7 +5,9 @@ import {
   ScrollView,
   View,
   Text,
+  TouchableOpacity,
   StatusBar,
+  Button
 } from 'react-native';
 
 import styled from 'styled-components/native';
@@ -23,21 +25,55 @@ const HeaderText = styled.Text`
 
 const Input = styled.TextInput`
   width:90%;
-  font-size:18px;
   height:50px;
-  background-color:#000;
-  padding:0 15px;
   color:#2aff1f;
-  border-radius:8px;
-  border:1px solid #2aff1f;
+  font-size:18px;
+  padding:0 15px;
   margin-top:20px;
+  border-radius:8px;
+  background-color:#000;
+  border:1px solid #2aff1f;
 `;
+
+const ResultArea = styled.View`
+  width:100%;
+  margin-top: 20px;
+  background-color:#1B161A;
+  padding:20px;
+  justify-content:center;
+  align-items:flex-start;
+`;
+
+const ResultItemTitle = styled.Text`
+  font-size:18px;
+  font-weight:bold;
+  color:#F2F2F2;
+  `;
+
+const ResultItem = styled.Text`
+  font-size:18px;
+  color:#F2F2F2;
+  margin-bottom:20px;
+`;
+
 
 export default () => {
   const [valor, setValor] = useState('');
+  const [taxa, setTaxa] = useState(0);
+
+  const handleSubmit = () => {
+    let nValor = parseFloat(valor);
+
+    if (nValor) {
+      setTaxa((10 / 100) * nValor);
+    } else {
+      alert('Digite o valor da compra.');
+    }
+  };
+
   return (
     <Page>
-      <HeaderText>Calculadora</HeaderText>
+      <HeaderText>Calcular Taxa</HeaderText>
       <Input
         placeholder="Valor da conta"
         placeholderTextColor="#878787"
@@ -45,6 +81,45 @@ export default () => {
         value={valor}
         onChangeText={setValor}
       />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSubmit}
+      >
+        <Text style={styles.buttonText}>
+          Calcular
+        </Text>
+      </TouchableOpacity>
+
+      {taxa > 0 && (
+        <ResultArea>
+          <ResultItemTitle>Valor da conta:</ResultItemTitle>
+          <ResultItem>R$ {parseFloat(valor).toFixed(2)}</ResultItem>
+
+          <ResultItemTitle>Valor do taxa:</ResultItemTitle>
+          <ResultItem>R$ {parseFloat(taxa).toFixed(2)} (10%)</ResultItem>
+
+          <ResultItemTitle>Valor total:</ResultItemTitle>
+          <ResultItem>R$ {(parseFloat(valor) + parseFloat(taxa)).toFixed(2)}</ResultItem>
+        </ResultArea>
+      )}
+
     </Page>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    height: 42,
+    width: '50%',
+    marginTop: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#28788d',
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#F4F8F9',
+    fontWeight: 'bold',
+  }
+});
