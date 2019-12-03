@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { Text, TextInput } from 'react-native';
+import { Text, TextInput, Button } from 'react-native';
 
 const Page = styled.SafeAreaView`
   flex:1;
@@ -19,7 +19,7 @@ const Label = (props) => {
 const Input = styled.TextInput`
   width:200px;
   height:40px;
-  border:1px solid #ccc;
+  border:2px solid #ccc;
   border-radius:6px;
   background-color:#fff;
   margin-top:100px;
@@ -27,11 +27,22 @@ const Input = styled.TextInput`
 
 const State = () => {
   const [nome, setNome] = useState('Jack');
+  const [resultado, setResultado] = useState('');
+
+  const handleClick = () => {
+    setResultado(nome);
+  }
+
   return (
     <Page>
       <Label name="Passando texto como propriedade" />
       <Input value={nome} onChangeText={setNome}></Input>
-      <Text style={{ color: '#fff', fontWeight: 'bold' }}>Nome: {nome}</Text>
+
+      <Button title="Gerar Nome" onPress={handleClick} />
+
+      <Text style={{ color: '#fff', fontWeight: 'bold' }}>{resultado}</Text>
+
+
     </Page>
   );
 }
