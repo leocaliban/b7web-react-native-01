@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -66,11 +66,13 @@ export default () => {
     let nValor = parseFloat(valor);
 
     if (nValor) {
-      setTaxa((taxValue/ 100) * nValor);
-    } else {
-      alert('Digite o valor da compra.');
+      setTaxa((taxValue / 100) * nValor);
     }
   };
+
+  useEffect(() => {
+    handleSubmit();
+  }, [taxValue]);
 
   return (
     <Page>
@@ -139,7 +141,7 @@ export default () => {
         onPress={handleSubmit}
       >
         <Text style={styles.buttonText}>
-          Calcular {taxValue}{taxValue? '%':''}
+          Calcular {taxValue}{taxValue ? '%' : ''}
         </Text>
       </TouchableOpacity>
 
@@ -149,7 +151,7 @@ export default () => {
           <ResultItem>R$ {parseFloat(valor).toFixed(2)}</ResultItem>
 
           <ResultItemTitle>Valor do taxa:</ResultItemTitle>
-      <ResultItem>R$ {parseFloat(taxa).toFixed(2)} ({taxValue}%)</ResultItem>
+          <ResultItem>R$ {parseFloat(taxa).toFixed(2)} ({taxValue}%)</ResultItem>
 
           <ResultItemTitle>Valor total:</ResultItemTitle>
           <ResultItem>R$ {(parseFloat(valor) + parseFloat(taxa)).toFixed(2)}</ResultItem>
