@@ -13,9 +13,9 @@ import {
 import styled from 'styled-components/native';
 
 const Page = styled.SafeAreaView`
- flex:1;
- align-items:center;
- background-color:#2b2b2b
+  flex:1;
+  align-items:center;
+  background-color:#2b2b2b
 `;
 
 const HeaderText = styled.Text`
@@ -60,12 +60,13 @@ const ResultItem = styled.Text`
 export default () => {
   const [valor, setValor] = useState('');
   const [taxa, setTaxa] = useState(0);
+  const [taxValue, setTaxValue] = useState(10);
 
   const handleSubmit = () => {
     let nValor = parseFloat(valor);
 
     if (nValor) {
-      setTaxa((10 / 100) * nValor);
+      setTaxa((taxValue/ 100) * nValor);
     } else {
       alert('Digite o valor da compra.');
     }
@@ -81,12 +82,64 @@ export default () => {
         value={valor}
         onChangeText={setValor}
       />
+
+      <View style={styles.taxArea}>
+        <TouchableOpacity
+          style={styles.taxButton}
+          onPress={handleSubmit}
+        >
+          <Text
+            style={[styles.buttonText, { color: '#2b9925' }]}
+            onPress={() => setTaxValue(5)}
+          >
+            5%
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.taxButton}
+          onPress={handleSubmit}
+        >
+          <Text
+            style={[styles.buttonText, { color: '#d2d91a' }]}
+            onPress={() => setTaxValue(10)}
+          >
+            10%
+        </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.taxButton}
+          onPress={handleSubmit}
+        >
+          <Text
+            style={[styles.buttonText, { color: '#d97d1a' }]}
+            onPress={() => setTaxValue(15)}
+          >
+            15%
+        </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.taxButton}
+          onPress={handleSubmit}
+        >
+          <Text
+            style={[styles.buttonText, { color: '#d91a1a' }]}
+            onPress={() => setTaxValue(20)}
+          >
+            20%
+        </Text>
+        </TouchableOpacity>
+
+      </View>
+
       <TouchableOpacity
         style={styles.button}
         onPress={handleSubmit}
       >
         <Text style={styles.buttonText}>
-          Calcular
+          Calcular {taxValue}{taxValue? '%':''}
         </Text>
       </TouchableOpacity>
 
@@ -96,7 +149,7 @@ export default () => {
           <ResultItem>R$ {parseFloat(valor).toFixed(2)}</ResultItem>
 
           <ResultItemTitle>Valor do taxa:</ResultItemTitle>
-          <ResultItem>R$ {parseFloat(taxa).toFixed(2)} (10%)</ResultItem>
+      <ResultItem>R$ {parseFloat(taxa).toFixed(2)} ({taxValue}%)</ResultItem>
 
           <ResultItemTitle>Valor total:</ResultItemTitle>
           <ResultItem>R$ {(parseFloat(valor) + parseFloat(taxa)).toFixed(2)}</ResultItem>
@@ -121,5 +174,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#F4F8F9',
     fontWeight: 'bold',
+  },
+  taxArea: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignContent: 'center',
+    marginTop: 20
+  },
+  taxButton: {
+    height: 42,
   }
 });
