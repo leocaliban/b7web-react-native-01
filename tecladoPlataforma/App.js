@@ -5,10 +5,10 @@ import {
 
 import styled from 'styled-components/native';
 
+import Header from './src/components/Header';
+
 const Page = styled.SafeAreaView`
   flex:1;
-  justify-content:center;
-  align-items:center;
   background-color:#2b2b2b;
 `;
 
@@ -37,6 +37,7 @@ export default () => {
 
   return (
     <Page>
+      <Header></Header>
       <KeyBoardArea behavior={Platform.OS === 'ios' ? 'padding' : null}>
         <Logo></Logo>
         <Input></Input>
