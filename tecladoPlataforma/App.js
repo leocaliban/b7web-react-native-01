@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Platform
+  Platform,
+  Image,
+  Text
 } from 'react-native';
 
 import styled from 'styled-components/native';
@@ -12,7 +14,7 @@ const Page = styled.SafeAreaView`
   background-color:#2b2b2b;
 `;
 
-const Logo = styled.View`
+const Logo = styled.Image`
   width:100px;
   height:100px;
   background-color:#333333;
@@ -33,15 +35,32 @@ const KeyBoardArea = styled.KeyboardAvoidingView`
   align-items:center;
 `;
 
+const Goal = styled.Image`
+  width:50px;
+  height:50px;
+  background-color:#2b2b2b;
+  align-self:flex-end;
+  margin:10px;
+`;
+
 export default () => {
+
+  const [status, setStatus] = useState('');
 
   return (
     <Page>
       <Header></Header>
       <KeyBoardArea behavior={Platform.OS === 'ios' ? 'padding' : null}>
-        <Logo></Logo>
+        <Logo source={require('./src/assets/images/axe.png')}></Logo>
         <Input></Input>
       </KeyBoardArea>
+      <Goal
+        source={{ uri: 'https://img.pngio.com/goal-png-transparent-images-pictures-photos-png-arts-goals-and-objectives-png-400_275.png' }}
+        defaultSource={require('./src/assets/images/noimage.png')}
+        onLoadStart={() => setStatus('Carregando...')}
+        onLoad={() => setStatus('')}
+      ></Goal>
+      <Text style={{ color: '#fff' }}>{status}</Text>
     </Page>
   )
 }
