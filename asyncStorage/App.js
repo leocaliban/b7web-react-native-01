@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
+  Modal,
+  Button
 } from 'react-native';
 
 import styled from 'styled-components';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
+
+
 const Page = styled.SafeAreaView`
   flex:1;
   align-items:center;
+  justify-content:center;  
 `;
 
 const Input = styled.TextInput`
@@ -22,17 +21,13 @@ const Input = styled.TextInput`
   border: 1px solid #000;
   height: 50px;
   width:90%;
-  margin-top:50px;
-  margin-bottom:50px;
+  margin-top:30px;
+  margin-bottom:30px;
   padding: 0 20px;
 `;
 
-const Salvar = styled.Button`
-
-`;
-
 const NomeView = styled.View`
-  margin-top:50px;
+  margin-top:30px;
   padding:20px;
   background-color:#7a4791;
   width: 100%;
@@ -40,6 +35,12 @@ const NomeView = styled.View`
 
 const Nome = styled.Text`
   font-size: 18px;
+`;
+
+const Box = styled.View`
+  width:100%;
+  height:100%;
+  background-color:rgba(92, 16, 69, 0.6);
 `;
 
 export default () => {
@@ -50,6 +51,8 @@ export default () => {
 
   const [nome, setNome] = useState('');
   const [novoNome, setNovoNome] = useState('');
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleSave = async () => {
     if (novoNome !== '') {
@@ -64,6 +67,7 @@ export default () => {
     setNome(storagedName);
   };
 
+
   return (
     <Page>
       <Input
@@ -71,14 +75,27 @@ export default () => {
         value={novoNome}
         onChangeText={setNovoNome}
       ></Input>
-      <Salvar
+      <Button
         title="Salvar"
         onPress={handleSave}
-      ></Salvar>
+      ></Button>
 
       <NomeView>
         <Nome>{nome}</Nome>
       </NomeView>
+
+      <Button title="Exibir" onPress={() => setModalVisible(true)}></Button>
+
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        transparent={false}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <Box>
+          <Button title="Fechar" onPress={() => setModalVisible(false)}></Button>
+        </Box>
+      </Modal>
     </Page>
 
   );
