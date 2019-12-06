@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   Modal,
-  Button
+  Button,
+  StatusBar
 } from 'react-native';
 
 import styled from 'styled-components';
@@ -13,7 +14,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 const Page = styled.SafeAreaView`
   flex:1;
   align-items:center;
-  justify-content:center;  
+  justify-content:center; 
+  background-color:#262573; 
 `;
 
 const Input = styled.TextInput`
@@ -24,6 +26,7 @@ const Input = styled.TextInput`
   margin-top:30px;
   margin-bottom:30px;
   padding: 0 20px;
+  background-color:#fff; 
 `;
 
 const NomeView = styled.View`
@@ -70,6 +73,13 @@ export default () => {
 
   return (
     <Page>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="#262573"
+        hidden={false}
+        animated={true}
+      ></StatusBar>
+
       <Input
         placeholder="Digite um nome"
         value={novoNome}
