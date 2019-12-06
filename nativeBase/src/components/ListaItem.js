@@ -2,10 +2,13 @@ import React from 'react';
 
 import styled from 'styled-components/native';
 
-const Item = styled.TouchableOpacity`
+const Item = styled.TouchableHighlight`
   padding: 10px 20px;
   background-color:#bfcbff;
   flex-direction:row;
+  align-items:center;
+  height:60px;
+
 `;
 
 const ItemText = styled.Text`
@@ -24,8 +27,9 @@ const ItemCheck = styled.View`
 export default (props) => {
   return (
     <Item
-      activeOpacity={0.7}
-      style={{ borderBottomColor: '#888888', borderBottomWidth: 1 }}
+      activeOpacity={1} 
+      underlayColor="#787fff"
+      style={{ borderBottomColor: '#737a9e', borderBottomWidth: 1 }}
       onPress={props.onPress}
     >
       <>

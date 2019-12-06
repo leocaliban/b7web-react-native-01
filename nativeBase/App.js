@@ -6,6 +6,9 @@ import lista from './src/mocks/lista';
 
 import ListaItem from './src/components/ListaItem';
 import AddItemArea from './src/components/AddItemArea';
+import ListaItemSwipe from './src/components/ListaItemSwipe';
+
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 import {
   Button,
@@ -48,21 +51,33 @@ export default () => {
     setItem(newItems);
   };
 
+  const deleteItem = (index) => {
+    let newItems = [...items];
+    newItems = newItems.filter((elemento, posicao) => posicao !== index);
+    setItem(newItems);
+  };
+
   return (
     <Page>
       <AddItemArea onAddItem={addNewItem}
       ></AddItemArea>
-      <Listagem
+      <SwipeListView
         data={items}
         renderItem={({ item, index }) =>
           <ListaItem
             data={item}
             onPress={() => toggleRadio(index)}
-          ></ListaItem>}
+          ></ListaItem>
+        }
         keyExtractor={(item) => item.id}
+        leftOpenValue={50}
+        disableLeftSwipe={true}
+        renderHiddenItem={({ item, index }) =>
+          <ListaItemSwipe onDelete={() => deleteItem(index)}></ListaItemSwipe>
+        }
       >
 
-      </Listagem>
+      </SwipeListView>
     </Page>
   );
 }
