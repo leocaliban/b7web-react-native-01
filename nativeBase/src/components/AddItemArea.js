@@ -14,12 +14,21 @@ const AddItemInput = styled.TextInput`
     border-radius:5px;
     padding:0 10px;
 `;
-export default () => {
+export default (props) => {
     const [item, setItem] = useState('');
 
     const handleSubmit = () => {
-
-    }
+        if (item.trim() !== '') {
+            let items = [...props.items];
+            items.push({
+                id: item.trim(),
+                task: item.trim(),
+                done: false
+            });
+            props.setItem(items);
+        }
+        setItem('');
+    };
     return (
         <AddItemArea>
             <AddItemInput

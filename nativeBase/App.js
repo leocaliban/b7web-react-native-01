@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components/native';
 
@@ -30,11 +30,15 @@ const Listagem = styled.FlatList`
 `;
 
 export default () => {
+  const [items, setItem] = useState(lista);
   return (
     <Page>
-      <AddItemArea></AddItemArea>
+      <AddItemArea
+        items={items}
+        setItem={setItem}
+      ></AddItemArea>
       <Listagem
-        data={lista}
+        data={items}
         renderItem={({ item }) => <ListaItem data={item}></ListaItem>}
         keyExtractor={(item) => item.id}
       >
