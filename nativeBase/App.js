@@ -31,11 +31,19 @@ const Listagem = styled.FlatList`
 
 export default () => {
   const [items, setItem] = useState(lista);
+
+  const addNewItem = (inputText) => {
+    let newItems = [...items];
+    newItems.push({
+      id: inputText,
+      task: inputText,
+      done: false
+    });
+    setItem(newItems);
+  };
   return (
     <Page>
-      <AddItemArea
-        items={items}
-        setItem={setItem}
+      <AddItemArea onAddItem={addNewItem}
       ></AddItemArea>
       <Listagem
         data={items}
