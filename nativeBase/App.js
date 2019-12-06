@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import lista from './src/mocks/lista';
 
 import ListaItem from './src/components/ListaItem';
+import AddItemArea from './src/components/AddItemArea';
 
 import {
   Button,
@@ -31,6 +32,7 @@ const Listagem = styled.FlatList`
 export default () => {
   return (
     <Page>
+      <AddItemArea></AddItemArea>
       <Listagem
         data={lista}
         renderItem={({ item }) => <ListaItem data={item}></ListaItem>}

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import styled from 'styled-components/native';
-import { tsPropertySignature } from '@babel/types';
 
 const Item = styled.TouchableOpacity`
   padding: 10px 20px;
