@@ -41,13 +41,24 @@ export default () => {
     });
     setItem(newItems);
   };
+
+  const toggleRadio = (index) => {
+    let newItems = [...items];
+    newItems[index].done = !newItems[index].done;
+    setItem(newItems);
+  };
+
   return (
     <Page>
       <AddItemArea onAddItem={addNewItem}
       ></AddItemArea>
       <Listagem
         data={items}
-        renderItem={({ item }) => <ListaItem data={item}></ListaItem>}
+        renderItem={({ item, index }) =>
+          <ListaItem
+            data={item}
+            onPress={() => toggleRadio(index)}
+          ></ListaItem>}
         keyExtractor={(item) => item.id}
       >
 

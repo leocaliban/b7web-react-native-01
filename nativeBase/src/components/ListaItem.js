@@ -16,21 +16,22 @@ const ItemText = styled.Text`
 const ItemCheck = styled.View`
   width:20px;
   height:20px;
-  border-radius:10px;
-  border:5px solid #fff;
+  border-radius:1px;
+  border:5px solid ${props => props.checked ? '#000dff' : '#fff'};
+  background-color:${props => props.checked ? '#000dff' : '#fff'};
 `;
 
 export default (props) => {
-    return (
-        <Item
-            activeOpacity={0.7}
-            style={{ borderBottomColor: '#888888', borderBottomWidth: 1 }}
-            onPress={() => { }}
-        >
-            <>
-                <ItemText>{props.data.task}</ItemText>
-                <ItemCheck></ItemCheck>
-            </>
-        </Item>
-    )
+  return (
+    <Item
+      activeOpacity={0.7}
+      style={{ borderBottomColor: '#888888', borderBottomWidth: 1 }}
+      onPress={props.onPress}
+    >
+      <>
+        <ItemText>{props.data.task}</ItemText>
+        <ItemCheck checked={props.data.done}></ItemCheck>
+      </>
+    </Item>
+  )
 }
