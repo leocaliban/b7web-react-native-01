@@ -1,12 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,99 +8,78 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import styled from 'styled-components';
 
-const App: () => React$Node = () => {
+import AsyncStorage from '@react-native-community/async-storage';
+
+const Page = styled.SafeAreaView`
+  flex:1;
+  align-items:center;
+`;
+
+const Input = styled.TextInput`
+  font-size:15px;
+  border: 1px solid #000;
+  height: 50px;
+  width:90%;
+  margin-top:50px;
+  margin-bottom:50px;
+  padding: 0 20px;
+`;
+
+const Salvar = styled.Button`
+
+`;
+
+const NomeView = styled.View`
+  margin-top:50px;
+  padding:20px;
+  background-color:#7a4791;
+  width: 100%;
+`;
+
+const Nome = styled.Text`
+  font-size: 18px;
+`;
+
+export default () => {
+
+  useEffect(() => {
+    getNome();
+  }, []);
+
+  const [nome, setNome] = useState('');
+  const [novoNome, setNovoNome] = useState('');
+
+  const handleSave = async () => {
+    if (novoNome !== '') {
+      await AsyncStorage.setItem('@nome', novoNome);
+      setNome(novoNome);
+      setNovoNome('');
+    }
+  };
+
+  const getNome = async () => {
+    const storagedName = await AsyncStorage.getItem('@nome');
+    setNome(storagedName);
+  };
+
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <Page>
+      <Input
+        placeholder="Digite um nome"
+        value={novoNome}
+        onChangeText={setNovoNome}
+      ></Input>
+      <Salvar
+        title="Salvar"
+        onPress={handleSave}
+      ></Salvar>
+
+      <NomeView>
+        <Nome>{nome}</Nome>
+      </NomeView>
+    </Page>
+
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
-
-export default App;
