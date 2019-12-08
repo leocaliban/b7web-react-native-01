@@ -30,7 +30,7 @@ const Input = styled.TextInput`
 `;
 
 
-export default (props) => {
+const HomePage = (props) => {
 
     const [nome, setNome] = useState('');
 
@@ -47,3 +47,11 @@ export default (props) => {
         </Page>
     );
 }
+
+HomePage.navigationOptions = () => {
+    return {
+        title: 'Identificação'
+    }
+}
+
+export default HomePage;
