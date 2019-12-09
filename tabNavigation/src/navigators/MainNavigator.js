@@ -18,7 +18,11 @@ const MainNavigator = createBottomTabNavigator({
         activeTintColor: '#ff59ff',
         activeBackgroundColor: '#000',
         inactiveTintColor: '#000',
-        inactiveBackgroundColor: '#ff59ff'
+        inactiveBackgroundColor: '#ff59ff',
+        labelStyle: {
+            fontSize: 16,
+        },
+        labelPosition: "bellow-icon"
     },
     defaultNavigationOptions: {
         title: 'Título Padrão',

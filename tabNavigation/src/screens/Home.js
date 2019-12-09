@@ -21,6 +21,11 @@ const NavigateButton = styled.Button`
 
 `;
 
+const Icon = styled.Image`
+    width:25px;
+    height:25px;
+`;
+
 const Input = styled.TextInput`
     border: 1px solid #000;
     width:100%;
@@ -51,13 +56,14 @@ const HomePage = (props) => {
 HomePage.navigationOptions = ({ navigation }) => {
 
     return {
-        title: 'Identificação',
-        headerStyle: {
-            backgroundColor: '#abffb6'
-        },
-        headerRight:
-            <NavigateButton title="Sobre" onPress={() => navigation.navigate('About')}>
-            </NavigateButton>
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ focused, tintColor }) => {
+            if (focused) {
+                return <Icon source={require('../images/home-active.png')}></Icon>
+            } else {
+                return <Icon source={require('../images/home.png')}></Icon>
+            }
+        }
     }
 }
 
