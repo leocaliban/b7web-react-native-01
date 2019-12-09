@@ -13,8 +13,16 @@ const MainNavigator = createStackNavigator({
     },
     About: { screen: About },
 }, {
+    initialRouteName: 'Home',
     defaultNavigationOptions: {
-        title: 'Título Padrão'
+        title: 'Título Padrão',
+        headerStyle: {
+            backgroundColor: '#70ff83'
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold'
+        },
+        headerTintColor: '#333'
     }
 });
 

@@ -50,7 +50,10 @@ const HomePage = (props) => {
 
 HomePage.navigationOptions = () => {
     return {
-        title: 'Identificação'
+        title: 'Identificação',
+        headerStyle: {
+            backgroundColor: '#abffb6'
+        }
     }
 }
 
