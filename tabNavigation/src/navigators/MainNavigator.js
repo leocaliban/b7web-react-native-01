@@ -1,10 +1,10 @@
-import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Home from '../screens/Home';
 import Login from '../screens/Login';
 import About from '../screens/About';
 
-const MainNavigator = createStackNavigator({
+const MainNavigator = createBottomTabNavigator({
     Home: { screen: Home },
     Login: {
         screen: Login, navigationOptions: {
@@ -14,18 +14,14 @@ const MainNavigator = createStackNavigator({
     About: { screen: About },
 }, {
     initialRouteName: 'Home',
+    tabBarOptions: {
+        activeTintColor: '#ff59ff',
+        activeBackgroundColor: '#000',
+        inactiveTintColor: '#000',
+        inactiveBackgroundColor: '#ff59ff'
+    },
     defaultNavigationOptions: {
         title: 'Título Padrão',
-        headerStyle: {
-            backgroundColor: '#70ff83'
-        },
-        headerTitleStyle: {
-            fontWeight: 'bold'
-        },
-        headerTintColor: '#333',
-        headerRightContainerStyle: {
-            marginRight: 20
-        }
     }
 });
 
