@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import TabBarIcon from '../components/TabBarIcon';
+
 const Page = styled.SafeAreaView`
     flex:1;
     justify-content:center;
@@ -15,7 +17,7 @@ const NavigateButton = styled.Button`
 
 `;
 
-export default (props) => {
+const Login = (props) => {
 
     const about = () => {
         props.navigation.navigate('About');
@@ -28,3 +30,21 @@ export default (props) => {
         </Page>
     );
 }
+
+Login.navigationOptions = () => {
+
+    return {
+        tabBarLabel: 'Login',
+        tabBarIcon: ({ focused }) => {
+            return (
+                <TabBarIcon
+                    focused={focused}
+                    route="Login"
+                    badge={1}
+                ></TabBarIcon>
+            )
+        }
+    }
+}
+
+export default Login;

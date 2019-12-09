@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
+import TabBarIcon from '../components/TabBarIcon';
+
 const Page = styled.SafeAreaView`
     flex:1;
     justify-content:center;
@@ -21,11 +23,6 @@ const NavigateButton = styled.Button`
 
 `;
 
-const Icon = styled.Image`
-    width:25px;
-    height:25px;
-`;
-
 const Input = styled.TextInput`
     border: 1px solid #000;
     width:100%;
@@ -33,7 +30,6 @@ const Input = styled.TextInput`
     padding: 5px 20px;
     margin: 20px;
 `;
-
 
 const HomePage = (props) => {
 
@@ -58,11 +54,13 @@ HomePage.navigationOptions = ({ navigation }) => {
     return {
         tabBarLabel: 'Home',
         tabBarIcon: ({ focused, tintColor }) => {
-            if (focused) {
-                return <Icon source={require('../images/home-active.png')}></Icon>
-            } else {
-                return <Icon source={require('../images/home.png')}></Icon>
-            }
+            return (
+                <TabBarIcon
+                    focused={focused}
+                    route="Home"
+                    badge={5}
+                ></TabBarIcon>
+            )
         }
     }
 }
