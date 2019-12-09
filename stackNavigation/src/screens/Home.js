@@ -48,12 +48,17 @@ const HomePage = (props) => {
     );
 }
 
-HomePage.navigationOptions = () => {
+HomePage.navigationOptions = ({ navigation }) => {
+
     return {
         title: 'Identificação',
         headerStyle: {
             backgroundColor: '#abffb6'
-        }
+        },
+        headerRight:
+            <NavigateButton title="Sobre" onPress={() => navigation.navigate('About')}>
+                
+            </NavigateButton>
     }
 }
 
