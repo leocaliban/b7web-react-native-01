@@ -5,7 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import Store from './src/Store';
 import MainNavigator from './src/navigators/MainNavigator';
 
-const AppContainer = createAppContainer(MainNavigator)
+const AppContainer = createAppContainer(MainNavigator);
 
 export default () => (
   <Provider store={Store}>

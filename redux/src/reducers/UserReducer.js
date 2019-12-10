@@ -1,9 +1,9 @@
 const initialState = {
-    name: '',
-    email: ''
+    name: 'Jack Bauer',
+    email: 'jbctu@gmail.com'
 };
 
-export default (action, state = initialState) => {
+export default (state = initialState, action) => {
 
     switch (action.type) {
         case 'SET_NAME':
@@ -16,4 +16,4 @@ export default (action, state = initialState) => {
             };
     }
     return state;
-}
+};
