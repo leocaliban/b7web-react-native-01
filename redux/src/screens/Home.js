@@ -24,14 +24,12 @@ const Input = styled.TextInput`
 
 
 const Screen = (props) => {
-    console.log(props);
     return (
         <Page>
             <Titulo>Tela Inicial!</Titulo>
             <Titulo>{props.name}</Titulo>
 
             <Input value={props.name} onChangeText={e => props.setName(e)}></Input>
-
         </Page>
     );
 }
