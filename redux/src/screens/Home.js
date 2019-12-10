@@ -13,6 +13,15 @@ const Titulo = styled.Text`
     font-size:20px;
 `;
 
+const Input = styled.TextInput`
+    font-size:15px;
+    border:1px solid #000;
+    margin:20px;
+    height:40px;
+    width:90%;
+    border-radius:10px;
+`;
+
 
 const Screen = (props) => {
     console.log(props);
@@ -20,6 +29,9 @@ const Screen = (props) => {
         <Page>
             <Titulo>Tela Inicial!</Titulo>
             <Titulo>{props.name}</Titulo>
+
+            <Input value={props.name} onChangeText={e => props.setName(e)}></Input>
+
         </Page>
     );
 }
@@ -31,8 +43,10 @@ const mapStateToProps = (state) => {
     };
 }
 
-const mapDispatchToProps = () => {
-    return {};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setName: (name) => dispatch({ type: 'SET_NAME', payload: { name } })
+    };
 }
 
 
